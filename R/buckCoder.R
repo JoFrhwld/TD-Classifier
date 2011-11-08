@@ -1,4 +1,4 @@
-b <- read.delim("Data/newBuckeye.txt")
+b <- read.delim("Data/new_buckeye.txt")
 
 b$Gram <- "mono"
 b[grep("ed$", b$Word),]$Gram <- "past"
