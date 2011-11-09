@@ -1,7 +1,4 @@
-## exclude preceding /r/
+## This is for excluding certain subsets of the data
 
-b <- subset(b, PreSeg != "/r/")
-b <- subset(b, !(FolSeg %in% c("apical","B", "E","null","S","U")))
-b <- subset(b, !Word %in% c("and","just","didn't"))
-
-
+b <- subset(b, !(FolSeg %in% c("apical")))
+#b <- subset(b, !(Word == "kind" & FolWord == "of"))
