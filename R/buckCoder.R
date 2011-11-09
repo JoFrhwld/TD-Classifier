@@ -39,15 +39,15 @@ words_in_class <- dlply(b, .(Gram), with, unique(as.character(Word)))
 
 ## justT errors
 words_in_class$justT
-b$Gram[b$Word %in% c("present", "consent", "absent", "represent", "misrepresent")] <- "m"
+b$Gram[b$Word %in% c("present", "consent", "absent", "represent", "misrepresent")] <- "mono"
 
 #SemiweakT errors
 words_in_class$semiweakT
-b$Gram[b$Word %in% c("excellent", "violent", "talent", "equivalent", "prevalent")] <- "m"
+b$Gram[b$Word %in% c("excellent", "violent", "talent", "equivalent", "prevalent")] <- "mono"
 
 #stem change errors
 words_in_class$stemchange
-b$Gram[b$Word %in% c("playground", "background", "underground", "ground", "rebound")] <- "m"
+b$Gram[b$Word %in% c("playground", "background", "underground", "ground", "rebound")] <- "mono"
 
 
 b$Gram2 <- b$Gram
@@ -72,11 +72,9 @@ dput(levels(b$FolSeg))
 
 levels(b$FolSeg) <- c("vowel", "vowel", "vowel", "vowel", "vowel", "stop", "B", "apical", "apical", "apical", "E", 
 "vowel", "vowel", "vowel", "fricative", "stop", "/h/", "vowel", "vowel", "apical", "stop", "/l/", 
-"/m/", "/n/", "null", "vowel", "stop", "/r/", "sibilant", "S", "sibilant", "apical", "apical", 
+"/m/", "/n/", "null", "vowel", "stop", "/r/", "sibilant", "pause", "sibilant", "apical", "apical", 
 "U", "fricative", "/w/", "/y/", "sibilant")
 b$FolSeg <-as.character(b$FolSeg)
-
-b$FolSeg[b$FolWord == "<SIL>"] <- "pause"
 
 
 b$DepVar <- "del"
