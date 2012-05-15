@@ -1,3 +1,5 @@
+library(car)
+
 b <- read.delim("Data/new_buckeye.txt")
 
 b$Gram <- "mono"
@@ -57,10 +59,16 @@ b$Gram2 <- gsub("semiweak.", "semiweak", b$Gram2)
 b$PreSeg <- b$PreSegTrans
 dput(levels(b$PreSeg))
 ## c("b", "ch", "el", "en", "er", "f", "g", "jh", "k", "l", "m", 
-## "n", "p", "r", "s", "sh", "th", "vowel", "z")
+## "n", "p", "r", "s", "sh", "th", "v", "z")
 
-levels(b$PreSeg) <- c("stop", "affricate", "/l/", "/n/", "/r/", "fricative", "stop", "affricate", "stop", "/l/", "/m/", 
-"/n/", "stop", "/r/", "sibilant", "sibilant", "fricative", "fricative", "sibilant")
+b$PreSeg <- recode(b$PreSeg, "c('b','g','k','p') = 'stop';
+                              c('ch','jh') = 'affricate';
+                              c('el','l') = '/l/';
+                              c('en','n') = '/n/';
+                              c('m') = '/m/';
+                              c('er','r') = '/r/';
+                              c('f','th','v') = 'fricative';
+                              c('s','sh','z') = 'sibilant'")
 
 b$FolSeg <- b$FolSegTrans
 dput(levels(b$FolSeg))
@@ -69,11 +77,20 @@ dput(levels(b$FolSeg))
 ## "m", "n", "null", "ow", "p", "r", "s", "S", "sh", "t", "th", 
 ## "U", "v", "w", "y", "z")
 
+b$FolSeg <- recode(b$FolSeg, "c('aa', 'ae', 'ah', 'aw', 'ay', 'eh','ey',
+                                'ih', 'iy', 'ow','er')='vowel';
+                              c('b','g', 'k', 'p') = 'stop';
+                              c('ch','d','dh','jh','t','th')='apical';
+                              c('r')='/r/';
+                              c('f', 'v')='fricative';
+                              c('h') = '/h/';
+                              c('l') = '/l/';
+                              c('m', 'n')='nasal';
+                              c('s','z','sh') = 'sibilant';
+                              c('w') = '/w/';
+                              c('y') = '/y/';
+                              c('S') = 'pause'")
 
-levels(b$FolSeg) <- c("vowel", "vowel", "vowel", "vowel", "vowel", "stop", "B", "apical", "apical", "apical", "E", 
-"vowel", "vowel", "vowel", "fricative", "stop", "/h/", "vowel", "vowel", "apical", "stop", "/l/", 
-"/m/", "/n/", "null", "vowel", "stop", "/r/", "sibilant", "pause", "sibilant", "apical", "apical", 
-"U", "fricative", "/w/", "/y/", "sibilant")
 b$FolSeg <-as.character(b$FolSeg)
 
 
