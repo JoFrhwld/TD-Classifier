@@ -1,6 +1,8 @@
 library(car)
 
-b <- read.delim("Data/new_buckeye.txt")
+if(!exists(b)){
+  b <- read.delim("Data/new_buckeye.txt")
+}
 
 b$Gram <- "mono"
 b[grep("ed$", b$Word),]$Gram <- "past"
