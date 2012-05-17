@@ -59,7 +59,7 @@ b$Gram2 <- gsub("semiweak.", "semiweak", b$Gram2)
 
 
 b$PreSeg <- b$PreSegTrans
-dput(levels(b$PreSeg))
+#dput(levels(b$PreSeg))
 ## c("b", "ch", "el", "en", "er", "f", "g", "jh", "k", "l", "m", 
 ## "n", "p", "r", "s", "sh", "th", "v", "z")
 
@@ -73,7 +73,7 @@ b$PreSeg <- recode(b$PreSeg, "c('b','g','k','p') = 'stop';
                               c('s','sh','z') = 'sibilant'")
 
 b$FolSeg <- b$FolSegTrans
-dput(levels(b$FolSeg))
+#dput(levels(b$FolSeg))
 ## c("aa", "ae", "ah", "aw", "ay", "b", "B", "ch", "d", "dh", "E", 
 ## "eh", "er", "ey", "f", "g", "hh", "ih", "iy", "jh", "k", "l", 
 ## "m", "n", "null", "ow", "p", "r", "s", "S", "sh", "t", "th", 
