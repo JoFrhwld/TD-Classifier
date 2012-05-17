@@ -1,6 +1,6 @@
 library(car)
 
-if(!exists(b)){
+if(!exists("b")){
   b <- read.delim("Data/new_buckeye.txt")
 }
 
